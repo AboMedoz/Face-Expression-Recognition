@@ -27,7 +27,7 @@ for cat in os.listdir(DATA):
     for img_paths_raw in os.listdir(category_folder):
         img_paths = os.path.join(category_folder, img_paths_raw)
         img = cv2.imread(img_paths)
-        img = preprocess_img(img, -1)
+        img = preprocess_img(img, -1, True)
         imgs.append(img)
         labels.append(cat)
     print(f"Finished Folder {cat}")  # Debug

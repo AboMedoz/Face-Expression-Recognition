@@ -20,7 +20,7 @@ for category in os.listdir(VAL_DATA_PATH):
     for img_folders in os.listdir(category_folder):
         img_path = os.path.join(category_folder, img_folders)
         img = cv2.imread(img_path)
-        img = preprocess_img(img, -1)
+        img = preprocess_img(img, -1, True)
         imgs.append(img)
         labels.append(category)
     print(f"Finished Folder {category_folder}")  # Debug
