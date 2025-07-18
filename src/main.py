@@ -22,13 +22,15 @@ faces = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_d
 
 def predict_expr():
     while True:
-        _, frame = cap.read()
+        ret, frame = cap.read()
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         face = faces.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
         for (x, y, w, h) in face:
-            roi = gray[x: x + w, y: y + h]
+            roi = gray[y: y + h, x: x + w]
             roi = preprocess_img(roi, 0, False)
 
             prediction = model.predict(roi)
